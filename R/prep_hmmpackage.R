@@ -66,7 +66,7 @@ prep.hmmmodels <- function(output_dir=system.file("extdata", package = "microtra
   hmmpress_dir = file.path(output_dir, "hmm", "hmmpress")
 
   # start clean
-  unlink(file.path(output_dir, "hmm", "dbcan", "*"))
+  #unlink(file.path(output_dir, "hmm", "dbcan", "*"))
   unlink(file.path(output_dir, "hmm", "arcbacribosomal", "*"))
   unlink(file.path(output_dir, "hmm", "microtrait-hmmdb", "*"))
   unlink(file.path(output_dir, "hmm", "hmmpress", "*"))
