@@ -8,7 +8,7 @@ download.dbcan <- function(dbcan_version = 8, dbcanhmmdb_selectids_file, dbcanhm
   #dbcan_hmmdb_url = paste("http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
   downloaded_file <- file.path(tempdir(), paste0("dbcan.v", dbcan_version, ".txt"))
 
-  download.file(dbcan_hmmdb_url, downloaded_file)
+  if (!file.exists(downloaded_file)) download.file(dbcan_hmmdb_url, downloaded_file)
 
   futile.logger::flog.info("Subsetting dbcan hmm database")
   if(available.external("hmmfetch")) {
