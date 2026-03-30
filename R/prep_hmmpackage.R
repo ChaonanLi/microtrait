@@ -8,7 +8,7 @@ download.dbcan <- function(dbcan_version = 8, dbcanhmmdb_selectids_file, dbcanhm
   #dbcan_hmmdb_url = paste("http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
   downloaded_file <- file.path(tempdir(), paste0("dbcan.v", dbcan_version, ".txt"))
 
-  if (!file.exists(downloaded_file)) download.file(dbcan_hmmdb_url, downloaded_file)
+  download.file(dbcan_hmmdb_url, downloaded_file)
 
   futile.logger::flog.info("Subsetting dbcan hmm database")
   if(available.external("hmmfetch")) {
@@ -66,7 +66,7 @@ prep.hmmmodels <- function(output_dir=system.file("extdata", package = "microtra
   hmmpress_dir = file.path(output_dir, "hmm", "hmmpress")
 
   # start clean
-  #unlink(file.path(output_dir, "hmm", "dbcan", "*"))
+  unlink(file.path(output_dir, "hmm", "dbcan", "*"))
   unlink(file.path(output_dir, "hmm", "arcbacribosomal", "*"))
   unlink(file.path(output_dir, "hmm", "microtrait-hmmdb", "*"))
   unlink(file.path(output_dir, "hmm", "hmmpress", "*"))
