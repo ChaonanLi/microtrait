@@ -4,7 +4,8 @@
 download.dbcan <- function(dbcan_version = 8, dbcanhmmdb_selectids_file, dbcanhmmdb_file) {
   futile.logger::flog.info("Downloading dbcan hmm database")
 
-  dbcan_hmmdb_url = paste("http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
+  dbcan_hmmdb_url = paste("https://pro.unl.edu/dbCAN2/download_file.php?file=dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
+  #dbcan_hmmdb_url = paste("http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
   downloaded_file <- file.path(tempdir(), paste0("dbcan.v", dbcan_version, ".txt"))
 
   download.file(dbcan_hmmdb_url, downloaded_file)
