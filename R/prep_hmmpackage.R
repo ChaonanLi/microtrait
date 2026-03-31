@@ -8,7 +8,7 @@ download.dbcan <- function(dbcan_version = 8, dbcanhmmdb_selectids_file, dbcanhm
   dbcan_hmmdb_url = paste("https://github.com/ChaonanLi/microtrait_database/releases/download/1.0/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
   downloaded_file <- file.path(tempdir(), paste0("dbcan.v", dbcan_version, ".txt"))
 
-  download.file(dbcan_hmmdb_url, downloaded_file, method = "curl", extra = "-k")
+  download.file(dbcan_hmmdb_url, downloaded_file, method = "wget")
 
   futile.logger::flog.info("Subsetting dbcan hmm database")
   if(available.external("hmmfetch")) {
@@ -29,7 +29,7 @@ download.arcbacribosomal <- function(arcbacribosomalhmmdb_file) {
   #arcbacribosomal_hmmdb_url = "https://github.com/ukaraoz/microtrait-hmm/releases/download/latest/arcbacribosomal.hmmdb.gz"
   arcbacribosomal_hmmdb_url = "https://github.com/ChaonanLi/microtrait_database/releases/download/1.0/arcbacribosomal.hmmdb.gz"
   download.file(arcbacribosomal_hmmdb_url,
-                destfile = arcbacribosomalhmmdb_file, method = "curl", extra = "-k")
+                destfile = arcbacribosomalhmmdb_file, method = "wget")
 
   arcbacribosomalhmmdb_unzippedfile = R.utils::gunzip(arcbacribosomalhmmdb_file, remove = F, overwrite = T)
   return(arcbacribosomalhmmdb_unzippedfile[1])
@@ -50,7 +50,7 @@ download.microtrait <- function(microtraithmmdb_file) {
   # microtrait_hmmdb_url = "https://github.com/ukaraoz/microtrait-hmm/releases/download/latest/microtrait.hmmdb.gz"
   microtrait_hmmdb_url = "https://github.com/ChaonanLi/microtrait_database/releases/download/1.0/microtrait.hmmdb.gz"
   download.file(microtrait_hmmdb_url,
-                destfile = microtraithmmdb_file, method = "curl", extra = "-k")
+                destfile = microtraithmmdb_file, method = "wget")
 
   microtraithmmdb_unzippedfile = R.utils::gunzip(microtraithmmdb_file, remove = F, overwrite = T)
   return(microtraithmmdb_unzippedfile[1])
