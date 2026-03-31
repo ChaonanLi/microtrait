@@ -4,8 +4,8 @@
 download.dbcan <- function(dbcan_version = 8, dbcanhmmdb_selectids_file, dbcanhmmdb_file) {
   futile.logger::flog.info("Downloading dbcan hmm database")
 
-  dbcan_hmmdb_url = paste("https://pro.unl.edu/dbCAN2/download_file.php?file=dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
-  #dbcan_hmmdb_url = paste("http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
+  # dbcan_hmmdb_url = paste("http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
+  dbcan_hmmdb_url = paste("https://github.com/ChaonanLi/microtrait_database/releases/download/1.0/dbCAN-HMMdb-V", dbcan_version, ".txt", sep = "")
   downloaded_file <- file.path(tempdir(), paste0("dbcan.v", dbcan_version, ".txt"))
 
   download.file(dbcan_hmmdb_url, downloaded_file, method = "curl", extra = "-k")
@@ -26,7 +26,8 @@ download.dbcan <- function(dbcan_version = 8, dbcanhmmdb_selectids_file, dbcanhm
 download.arcbacribosomal <- function(arcbacribosomalhmmdb_file) {
   futile.logger::flog.info("Downloading PFAM hmm models for detection of ribosomal proteins")
 
-  arcbacribosomal_hmmdb_url = "https://github.com/ukaraoz/microtrait-hmm/releases/download/latest/arcbacribosomal.hmmdb.gz"
+  #arcbacribosomal_hmmdb_url = "https://github.com/ukaraoz/microtrait-hmm/releases/download/latest/arcbacribosomal.hmmdb.gz"
+  arcbacribosomal_hmmdb_url = "https://github.com/ChaonanLi/microtrait_database/releases/download/1.0/arcbacribosomal.hmmdb.gz"
   download.file(arcbacribosomal_hmmdb_url,
                 destfile = arcbacribosomalhmmdb_file, method = "curl", extra = "-k")
 
@@ -46,7 +47,8 @@ download.microtrait <- function(microtraithmmdb_file) {
   #                       #repo = "ukaraoz/test",
   #                       dest = fs::path_dir(microtraithmmdb_file))
 
-  microtrait_hmmdb_url = "https://github.com/ukaraoz/microtrait-hmm/releases/download/latest/microtrait.hmmdb.gz"
+  # microtrait_hmmdb_url = "https://github.com/ukaraoz/microtrait-hmm/releases/download/latest/microtrait.hmmdb.gz"
+  microtrait_hmmdb_url = "https://github.com/ChaonanLi/microtrait_database/releases/download/1.0/microtrait.hmmdb.gz"
   download.file(microtrait_hmmdb_url,
                 destfile = microtraithmmdb_file, method = "curl", extra = "-k")
 
@@ -61,7 +63,7 @@ download.microtrait <- function(microtraithmmdb_file) {
 #'
 #' @import futile.logger
 #' @export prep.hmmmodels
-prep.hmmmodels <- function(output_dir=system.file("extdata", package = "microtrait")) {
+prep.hmmmodels <- function(output_dir=system.file("extdata", package = "microtrait"), dbcan_version = 8) {
   hmmpress.extensions = c("h3f", "h3i", "h3m", "h3p")
   hmmpress_dir = file.path(output_dir, "hmm", "hmmpress")
 
@@ -71,7 +73,7 @@ prep.hmmmodels <- function(output_dir=system.file("extdata", package = "microtra
   unlink(file.path(output_dir, "hmm", "microtrait-hmmdb", "*"))
   unlink(file.path(output_dir, "hmm", "hmmpress", "*"))
 
-  dbcan_version = 8
+  # dbcan_version = 8
   dbcanhmmdb_selectids_file = file.path(output_dir, "dbcan.selectids.txt")
   dbcanhmmdb_file = file.path(output_dir, "hmm", "dbcan", paste0("dbcan.select.v", dbcan_version, ".hmmdb"))
   microtraithmmdb_file = file.path(output_dir, "hmm", "microtrait-hmmdb", "microtrait.hmmdb.gz")
